@@ -1,0 +1,26 @@
+security:
+    encoders:
+      AppBundle\Entity\User: md5
+
+    providers:
+        accounts:
+            entity: { class: AppBundle\Entity\User, property: username }
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        secured_area:
+            anonymous: ~
+            pattern: ^/
+            provider: accounts
+            context: app_user
+            form_login:
+                check_path: _security_check
+                login_path: _security_login
+                default_target_path: app_welcom
+                csrf_provider: security.csrf.token_manager
+            logout:
+                invalidate_session: false
+                path: _security_logout
+                target: app_welcom

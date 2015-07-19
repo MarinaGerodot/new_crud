@@ -1,0 +1,30 @@
+{% extends 'AppBundle::base_shop.html.twig' %}
+
+{% block title %}
+Shop
+{% endblock %}
+
+{% block content %}
+
+                <br/><!-- Выводим flash-сообщение  -->
+                <div class="left-n" align="left">
+                    {% for flashMessage in app.session.flashbag.get('notice') %}
+                    <div>
+                        {{ flashMessage }}
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="clearfix"> </div>
+                <br/>
+               
+               {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                
+				Hello {{app.user.username}}!!!
+                 
+				 {% else %} 
+				 
+				 Hello Anonymous!!!	
+      {% endif %}
+       
+ 
+{% endblock %}

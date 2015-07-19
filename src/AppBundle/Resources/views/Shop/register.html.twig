@@ -1,0 +1,53 @@
+{% extends 'AppBundle::base_login.html.twig' %}
+
+{% block title %}
+Register
+{% endblock %}
+
+
+{% block content %}
+
+<div align="left">
+	<div class="login-right">
+		<h3>LOGIN INFORMATION</h3>
+				
+				
+<form action="{{path('app_registration')}}" method="post" {{ form_enctype(registration_form) }}> 				
+		
+{{ form_errors(registration_form) }}
+
+<div>
+    {{ form_label(registration_form.username) }}
+    {{ form_errors(registration_form.username) }}
+    {{ form_widget(registration_form.username) }}
+</div>
+<div>
+    {{ form_label(registration_form.email) }}
+    {{ form_errors(registration_form.email) }}
+    {{ form_widget(registration_form.email) }}
+</div>
+<div>
+    {{ form_label(registration_form.password) }}
+    {{ form_errors(registration_form.password) }}
+    {{ form_widget(registration_form.password) }}
+</div>
+
+
+{{ form_rest(registration_form) }}
+		
+            
+<div class="left">
+<input type="submit" value="Register"/>
+</div>
+                
+</form>
+
+      <div align="right">
+	  <br/><br/>
+		<a class="now-get get-cart" href="javascript:history.back()">COME BACK</a>
+	 </div>
+	             
+    </div>           
+</div>
+
+{% endblock %}

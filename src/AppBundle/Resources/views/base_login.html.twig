@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <title>{% block title %}Shop-index{% endblock %}</title>
+        
+        {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('bundles/app/css/bootstrap.min.css') }}" type="text/css" media="all"/>
+        <!--theme-style-->
+        <link rel="stylesheet" href="{{ asset('bundles/app/css/bootstrap-theme.min.css') }}" type="text/css" media="all"/>	
+        <!--//theme-style-->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+        
+        <!--//fonts-->
+        {% endblock %}
+        {% block javascripts %}
+            <script src="{{ asset('bootstrap/js/jquery.min.js')}}"></script>
+            <script src="{{ asset('bootstrap/js/angular.js')}}"></script>
+        {% endblock %}
+        
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body>
+    	<!--header-->
+	<div class="header">
+	</div>
+    
+	<!---->
+	<div class="container">
+       
+      {% block content %}
+      {% endblock %}
+           
+    </div>	
+	<!---->
+<div class="footer">
+	</div>
+</body>
+</html>

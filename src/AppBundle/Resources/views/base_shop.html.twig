@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <title>{% block title %}Shop-index{% endblock %}</title>
+        
+        {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('bundles/app/css/bootstrap.min.css') }}" type="text/css" media="all"/>
+        <!--theme-style-->
+        <link rel="stylesheet" href="{{ asset('bundles/app/css/bootstrap-theme.min.css') }}" type="text/css" media="all"/>		
+        <!--//theme-style-->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+        
+        <!--//fonts-->
+        {% endblock %}
+        {% block javascripts %}
+            <script src="{{ asset('bootstrap/js/jquery.min.js')}}"></script>
+            <script src="{{ asset('bootstrap/js/angular.js')}}"></script>
+        {% endblock %}
+        
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+	<body>
+    	<!--header-->
+		<div class="header">
+			<div class="container">
+				<div class="row">
+				<div class="col-md-12">
+                    {% if auth %}
+                            <div class="account"><a href="{{path('_security_login')}}"><span> </span>{{app.user.username}}</a></div>
+                                         <ul class="login">
+								            <li style="margin-left: 60%"><a href="{{path('_security_logout')}}"><span> </span>LOGOUT</a></li>
+							             </ul>
+                    {% else %}        
+                           
+                            <ul class="login">
+								 <li style="margin-left: 60%"><a href="{{path('_security_login')}}"><span> </span>YOUR ACCOUNT</a></li> 
+			                     <li style="margin-left: 60%"><a href="{{path('_security_login')}}"><span> </span>SIGN IN</a></li> 
+			                     <li style="margin-left: 60%"><a href="{{path('app_register')}}">REGISTR</a></li>
+                            </ul>
+                    {% endif %}
+				</div>	
+			</div>
+		</div>
+	</div>
+    </div>
+	
+	<script type="text/javascript">
+            app = angular.module('ModalDemo', []);
+            app.directive('modalDialog', function() {
+            return {
+                restrict: 'E',
+                scope: {
+                show: '='
+            },
+            replace: true, // Replace with the template below
+            transclude: true, // we want to insert custom content inside the directive
+            link: function(scope, element, attrs) {
+            scope.dialogStyle = {};
+            if (attrs.width)
+                scope.dialogStyle.width = attrs.width;
+            if (attrs.height)
+                scope.dialogStyle.height = attrs.height;
+            scope.hideModal = function() {
+            scope.show = false;
+            };
+            },
+            template: "<div class='ng-modal' ng-show='show'><div class='ng-modal-overlay' ng-click='hideModal()'></div><div class='ng-modal-dialog' ng-style='dialogStyle'><div class='ng-modal-close' ng-click='hideModal()'>X</div><div class='ng-modal-dialog-content' ng-transclude></div></div></div>"
+            };
+            });
+
+            app.controller('MyCtrl', ['$scope', function($scope) {
+            $scope.modalShown = false;
+            $scope.toggleModal = function() {
+            $scope.modalShown = !$scope.modalShown;
+            };
+            }]);
+		</script>
+	<!---->
+	<div class="container">
+    
+      {% block content %}
+            
+	   {% endblock %}     
+
+	</div>
+	<!---->
+	<div class="footer">
+		
+	</div>
+   
+</body>
+</html>
